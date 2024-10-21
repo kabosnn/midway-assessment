@@ -16,7 +16,14 @@ const store = new FileStore<RecipeStore>(fileToStore, initialRecipes);
 const args = process.argv
 
 async function main() {
-  return await createApp(store, args);
+  try {
+    await createApp(store, args);
+  } catch (error) {
+    if (error) {
+      console.log(`Unkown command: ${args[2]}`);
+      
+    } 
+  }
 }
 
 main()
